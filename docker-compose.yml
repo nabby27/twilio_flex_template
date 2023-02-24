@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  twilio:
+    container_name: "twilio"
+    build:
+      context: .
+      dockerfile: Dockerfile.twilioFlex
+      args:
+        UNAME: ${USERNAME}
+        UID: ${USER_ID}
+        GID: ${GROUP_ID}
+    working_dir: '/usr/src/app'
+    volumes:
+      - ./:/usr/src/app:rw,Z
+    environment:
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
+      TWILIO_API_KEY: ${TWILIO_API_KEY}
+      TWILIO_API_SECRET: ${TWILIO_API_SECRET}
+      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
